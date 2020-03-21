@@ -1,0 +1,68 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Description": "CloudFormation template for creating a Lambda function name csstreaming-failure-retry-lambda.",
+
+  "Metadata": {
+    "AWS::CloudFormation::Designer": {
+      "1dd8a777-6a70-4dea-aac6-0af0f72857a0": {
+        "size": {
+          "width": 60,
+          "height": 60
+        },
+        "position": {
+          "x": 410,
+          "y": 80
+        },
+        "z": 0,
+        "embeds": []
+      },
+      "6444528c-622d-41b5-a658-f48e2e0384d3": {
+        "size": {
+          "width": 60,
+          "height": 60
+        },
+        "position": {
+          "x": 190,
+          "y": 90
+        },
+        "z": 0,
+        "embeds": [],
+        "dependson": [
+          "1dd8a777-6a70-4dea-aac6-0af0f72857a0"
+        ]
+      },
+      "ea46b693-2c05-4424-a671-b9f81ffa14f3": {
+        "source": {
+          "id": "6444528c-622d-41b5-a658-f48e2e0384d3"
+        },
+        "target": {
+          "id": "1dd8a777-6a70-4dea-aac6-0af0f72857a0"
+        },
+        "z": 1
+      }
+    }
+  },
+  "Resources": {
+    "TestLambda": {
+      "Type": "AWS::Lambda::Function",
+      "Properties": {},
+      "Metadata": {
+        "AWS::CloudFormation::Designer": {
+          "id": "1dd8a777-6a70-4dea-aac6-0af0f72857a0"
+        }
+      }
+    },
+    "TestApiGateway": {
+      "Type": "AWS::ApiGateway::GatewayResponse",
+      "Properties": {},
+      "Metadata": {
+        "AWS::CloudFormation::Designer": {
+          "id": "6444528c-622d-41b5-a658-f48e2e0384d3"
+        }
+      },
+      "DependsOn": [
+        "TestLambda"
+      ]
+    }
+  }
+}
