@@ -54,7 +54,9 @@
     },
     "TestApiGateway": {
       "Type": "AWS::ApiGateway::GatewayResponse",
-      "Properties": {},
+      "Properties": {
+        "Handler": "org.example.LambdaJavaAPI"
+      },
       "Metadata": {
         "AWS::CloudFormation::Designer": {
           "id": "6444528c-622d-41b5-a658-f48e2e0384d3"
