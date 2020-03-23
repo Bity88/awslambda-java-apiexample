@@ -45,7 +45,9 @@
   "Resources": {
     "TestLambda": {
       "Type": "AWS::Lambda::Function",
-      "Properties": {},
+      "Properties": {
+       "Handler": "org.example.LambdaJavaAPI"
+      },
       "Metadata": {
         "AWS::CloudFormation::Designer": {
           "id": "1dd8a777-6a70-4dea-aac6-0af0f72857a0"
@@ -55,7 +57,7 @@
     "TestApiGateway": {
       "Type": "AWS::ApiGateway::GatewayResponse",
       "Properties": {
-        "Handler": "org.example.LambdaJavaAPI"
+       
       },
       "Metadata": {
         "AWS::CloudFormation::Designer": {
