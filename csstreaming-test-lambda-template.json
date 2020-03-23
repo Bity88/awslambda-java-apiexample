@@ -1,7 +1,6 @@
 {
   "AWSTemplateFormatVersion": "2010-09-09",
   "Description": "CloudFormation template for creating a Lambda function name csstreaming-failure-retry-lambda.",
-
   "Metadata": {
     "AWS::CloudFormation::Designer": {
       "1dd8a777-6a70-4dea-aac6-0af0f72857a0": {
@@ -43,48 +42,76 @@
     }
   },
   "Resources": {
-      "LambdaExecutionRole": {
+    "LambdaExecutionRole": {
       "Type": "AWS::IAM::Role",
       "Properties": {
         "AssumeRolePolicyDocument": {
           "Version": "2012-10-17",
-          "Statement": [{ "Effect": "Allow", "Principal": {"Service": ["lambda.amazonaws.com"]}, "Action": ["sts:AssumeRole"] }]
+          "Statement": [
+            {
+              "Effect": "Allow",
+              "Principal": {
+                "Service": [
+                  "lambda.amazonaws.com"
+                ]
+              },
+              "Action": [
+                "sts:AssumeRole"
+              ]
+            }
+          ]
         },
         "Path": "/",
-        "Policies": [{
-          "PolicyName": "root",
-          "PolicyDocument": {
-            "Version": "2012-10-17",
-            "Statement": [{ "Effect": "Allow", "Action": ["logs:*"], "Resource": "arn:aws:logs:*:*:*" }]
+        "Policies": [
+          {
+            "PolicyName": "root",
+            "PolicyDocument": {
+              "Version": "2012-10-17",
+              "Statement": [
+                {
+                  "Effect": "Allow",
+                  "Action": [
+                    "logs:*"
+                  ],
+                  "Resource": "arn:aws:logs:*:*:*"
+                }
+              ]
+            }
           }
-        }]
-      },
-    
-    "TestLambda": {
-      "Type": "AWS::Lambda::Function",
-      "Properties": {
-       "Handler": "org.example.LambdaJavaAPI",
-        "Role": { "Fn::GetAtt" : ["LambdaExecutionRole", "Arn"] },
-      },
-      "Metadata": {
-        "AWS::CloudFormation::Designer": {
-          "id": "1dd8a777-6a70-4dea-aac6-0af0f72857a0"
-        }
+        ]
       }
     },
-    "TestApiGateway": {
-      "Type": "AWS::ApiGateway::GatewayResponse",
-      "Properties": {
-       
-      },
-      "Metadata": {
-        "AWS::CloudFormation::Designer": {
-          "id": "6444528c-622d-41b5-a658-f48e2e0384d3"
+
+
+      "TestLambda": {
+        "Type": "AWS::Lambda::Function",
+        "Properties": {
+          "Handler": "org.example.LambdaJavaAPI",
+          "Role": {
+            "Fn::GetAtt": [
+              "LambdaExecutionRole",
+              "Arn"
+            ]
+          }
+        },
+        "Metadata": {
+          "AWS::CloudFormation::Designer": {
+            "id": "1dd8a777-6a70-4dea-aac6-0af0f72857a0"
+          }
         }
       },
-      "DependsOn": [
-        "TestLambda"
-      ]
+      "TestApiGateway": {
+        "Type": "AWS::ApiGateway::GatewayResponse",
+        "Properties": {
+        },
+        "Metadata": {
+          "AWS::CloudFormation::Designer": {
+            "id": "6444528c-622d-41b5-a658-f48e2e0384d3"
+          }
+        },
+        "DependsOn": [
+          "TestLambda"
+        ]
+      }
     }
   }
-}
